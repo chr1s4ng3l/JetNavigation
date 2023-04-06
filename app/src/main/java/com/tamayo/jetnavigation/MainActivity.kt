@@ -36,12 +36,15 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navigationController = rememberNavController()
 
-                    NavHost(navController = navigationController, startDestination = "screenOne") {
-                        composable("screenOne"){
+                    NavHost(
+                        navController = navigationController,
+                        startDestination = Routes.Screen1.route
+                    ) {
+                        composable(Routes.Screen1.route) {
                             ScreenOne(navigationController)
                         }
 
-                        composable("screenTwo"){
+                        composable(Routes.Screen2.route) {
                             ScreenTwo(navigationController)
                         }
                     }
@@ -57,7 +60,8 @@ fun ScreenOne(navController: NavController) {
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Green).clickable{navController.navigate("screenTwo")}
+            .background(Color.Green)
+            .clickable { navController.navigate(Routes.Screen2.route) }
     ) {
         Text(
             text = "Screen One 1",
@@ -75,7 +79,8 @@ fun ScreenTwo(navController: NavController) {
     Box(contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Blue).clickable{navController.navigate("screenOne")}
+            .background(Color.Blue)
+            .clickable { navController.navigate(Routes.Screen1.route) }
     ) {
         Text(
             text = "Screen Two 2",
